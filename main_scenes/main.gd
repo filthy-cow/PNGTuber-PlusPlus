@@ -147,6 +147,7 @@ func _process(delta):
 	
 	moveSpriteMenu(delta)
 	zoomScene()
+	moveCamera()
 	
 	fileSystemOpen = isFileSystemOpen()
 	
@@ -237,7 +238,19 @@ func changeZoom():
 	
 	Global.pushUpdate("Set zoom to " + str(scaleOverall) + "%")
 	onWindowSizeChange()
-	
+
+func moveCamera():
+	# Handles arrow-key-based canvas panning
+	var moveSpeed = 2.0
+	if Input.is_action_pressed("ui_left"):
+		camera.position.x += moveSpeed
+	if Input.is_action_pressed("ui_right"):
+		camera.position.x -= moveSpeed
+	if Input.is_action_pressed("ui_up"):
+		camera.position.y -= moveSpeed
+	if Input.is_action_pressed("ui_down"):
+		camera.position.y += moveSpeed
+
 #When the user speaks!
 func onSpeak():
 	if origin.get_parent().position.y > -16:

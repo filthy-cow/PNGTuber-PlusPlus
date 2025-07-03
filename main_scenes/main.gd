@@ -211,14 +211,13 @@ func zoomScene():
 	#Handles Zooming
 	if Input.is_action_pressed("control"):
 		if Input.is_action_just_pressed("scrollUp"):
-			if scaleOverall < 400:
-				camera.zoom += Vector2(0.1,0.1)
-				scaleOverall += 10
-				changeZoom()
+			camera.zoom += Vector2(0.025,0.025)
+			scaleOverall += 2.5
+			changeZoom()
 		if Input.is_action_just_pressed("scrollDown"):
-			if scaleOverall > 10:
-				camera.zoom -= Vector2(0.1,0.1)
-				scaleOverall -= 10
+			if scaleOverall > 2.5:
+				camera.zoom -= Vector2(0.025,0.025)
+				scaleOverall -= 2.5
 				changeZoom()
 	
 	$ControlPanel/ZoomLabel.modulate.a = lerp($ControlPanel/ZoomLabel.modulate.a,0.0,0.02)
